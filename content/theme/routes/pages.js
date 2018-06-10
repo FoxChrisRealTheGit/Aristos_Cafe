@@ -5,6 +5,31 @@ const Logger = require("../../../includes/AristosLogger/AristosLogger").Logger;
 const Page = require("../../../includes/models/page")
 // GET media model
 const Media = require("../../../includes/models/media")
+// GET Product model
+const Product = require("../../upgrade/products/models/product")
+
+/*
+* GET about page
+*/
+
+router.get("/why-are-we-awesome", function (req, res) {
+    Page.findOne({ slug: "about" }, function (err, page) {
+        if (err) { Logger.error(err) };
+
+        if (!page) {
+            res.redirect("/")
+        } else {
+            res.render("about_us", {
+                title: page.title,
+                content: page.content,
+                keywords: page.keywords,
+                description: page.description,
+                author: page.author
+            })
+        }
+    })
+})
+
 /*
 * GET drink menu
 */
@@ -122,13 +147,17 @@ router.get("/", function (req, res) {
         }
         Media.find({}, function (err, media) {
             if (err) { Logger.error(err) };
-            res.render("index", {
-                title: pages.title,
-                content: pages.content,
-                keywords: pages.keywords,
-                description: pages.description,
-                author: pages.author,
-                media: media
+            Product.find({ category: "coffees" }).limit(4).exec(function (err, product) {
+                if (err) { Logger.error(err) };
+                res.render("index", {
+                    title: pages.title,
+                    content: pages.content,
+                    keywords: pages.keywords,
+                    description: pages.description,
+                    author: pages.author,
+                    media: media,
+                    products: product
+                })
             })
         })
     })

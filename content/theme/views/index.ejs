@@ -1,28 +1,40 @@
 <% include _layouts/header %>
-<div class="hero">
-    <% media.forEach(function(media){ %>
-        <% if(media.category == "about-img"){ %>
-            <img src="/images/<%= media.path %>" alt="<%= media.alt %>">
-        <% } %>
-    <% }) %>
-</div>
-<div class="welcome-text">
- <%- content %>
-</div>
-<div class="home-bulletin">
+    <div class="hero">
+        <% media.forEach(function(media){ %>
+            <% if(media.category == "about-img"){ %>
+                <img src="/images/<%= media.path %>" alt="<%= media.alt %>">
+                <% } %>
+                    <% }) %>
+    </div>
+    <div class="welcome-text">
+        <%- content %>
+    </div>
+    <div class="home-bulletin">
         <% media.forEach(function(media){ %>
             <% if(media.category == "bulletin-image"){ %>
                 <img src="/images/<%= media.path %>" alt="<%= media.alt %>">
                 <div class="home-bulletin-info">
                     <h4>Live Music /Poetry Readings are on Wednesday & Saturday evenings from 5:30pm until closing.</h4>
-                    <h4>Book club is held on Wednesday evenings; the book of the month is: <%= media.description %></h4>
+                    <h4>Book club is held on Wednesday evenings; the book of the month is:
+                        <%= media.description %>
+                    </h4>
                 </div>
-            <% } %>
-        <% }) %>
-</div>
-   <div class="featured-products">
+                <% } %>
+                    <% }) %>
+    </div>
+    <div class="featured-products">
         <h4>Featured Products</h4>
-        <div class="home-product-holder"></div>
-   </div>
+        <div class="home-product-holder">
+            <% products.forEach(function(product){ %>
+                <div class="product-display">
+                    <img src="/images/product_images/<%= product._id %>/<%= product.image %>" alt="">
+                    <h5><%= product.title %></h5>
+                    <h6>$<%= product.price.toFixed(2) %></h6>
+                    <a href="/cart/add/<%= product.slug %>">Add To Cart</a>
+                </div>
 
-        <% include _layouts/footer %>
+                <% }) %>
+        </div>
+    </div>
+
+    <% include _layouts/footer %>
