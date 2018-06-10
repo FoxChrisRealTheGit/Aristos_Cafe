@@ -1,0 +1,88 @@
+<% include ../_layouts/header %>
+
+    <% if(typeof cart !== "undefined"){ %>
+        <h1 class="page_title">My Cart</h1>
+        <br>
+        <br>
+        <table class="checkout_table">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th></th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% cart.forEach(function(product){ %>
+
+                    <tr>
+                        <td>
+                            <img class="img-preview" src="/images/<%= product.image %>" alt="">
+                        </td>
+                        <td>
+                            <%= product.title %>
+                        </td>
+                        <td>
+                            $
+                            <%= product.price %>
+                        </td>
+                        <td>
+                            <%= product.qty %>
+                        </td>
+                        <td>
+                            <a class="btn-quantity" href="/cart/update/<%= product.title %>?action=add">+</a>&nbsp;
+                            <a class="btn-quantity" href="/cart/update/<%= product.title %>?action=remove">-</a>&nbsp;
+                            <a class="btn-clearcart" href="/cart/update/<%= product.title %>?action=clear">Remove</a>&nbsp;
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6" align="right">
+                        <h6 class="checkout-shipping">Shipping: $
+                            <%= shipping %>
+                        </h6>
+
+
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="6" align="right">
+                        <h6 class="checkout-total">Total: $
+                            <%= total %>
+                        </h6>
+                    </td>
+                </tr>
+            </tfoot>
+
+        </table>
+        <div class="checkout-bottom-buttons">
+
+                        <div>
+                          
+                                <a id="buy-now" class="btn-buynow" href="/cart/pay/<%= orderid %>">Buy Now</a>
+                             
+                                    <a class="btn-clearcart" href="/cart/clear">Clear cart</a>
+                        </div>
+        </div>
+        <% } else { %>
+            <h3 class="page-title">Your cart is empty...</h3>
+            <% } %>
+
+                <script>
+                    $(function () {
+                        $("a.clearcart").on("click", function () {
+                            if (!confirm("Confirm clear cart")) {
+                                return false
+                            }
+                        })
+                    })
+                </script>
+                <% include ../_layouts/footer %>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="<%= description %>">
+    <meta name="keywords" content="<%= keywords %>">
+    <meta name="author" content="<%= author %>">
+
+    <title>Aristos CMS -
+        <%= title %>
+    </title>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/themereset.css" />
+</head>
+
+<body>
+    <nav class="main-header">
+        <div class="main-header-top">
+            <a class="navbar-brand" href="/">Aristos CMS</a>
+            <ul class="main-header-top-nav">
+                    <li>
+                            <a class="nav-link" href="/cart/checkout">My Cart (
+                                <% if (typeof cart !== "undefined") { %>
+                                    <%= cart.length %>
+                                        <% } else { %>
+                                            0
+                                            <% } %>
+                                                )</a>
+                        </li>
+                <% if (user) { %>
+                    <li>
+                        <a class="nav-link" href="/users/logout">Hi,
+                            <%= user.username %> ( Logout )</a>
+                    </li>
+                    <% } else{ %>
+                        <li>
+                            <a class="nav-link" href="/users/register">Register</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="/users/login">Log in</a>
+                        </li>
+                        <% } %>
+                            <% if (user && user.admin == 1) { %>
+                                <li>
+                                    <a class="nav-link" href="/admin/pages">Admin Area</a>
+                                </li>
+                                <% } %>
+            </ul>
+        </div>
+        <div class="main-header-bottom">
+            <ul class="main-header-bottom-nav">
+                <% pages.forEach(function(page){ %>
+                    <% if(page.parent == "home"){ %>
+                        <% if (page.slug == "home"){ %>
+                            <li>
+                                <a class="nav-link" href="/">
+                                    <%= page.title %>
+                                </a>
+                            </li>
+                            <% } else{ %>
+                                <li>
+                                    <a class="nav-link" href="/<%= page.slug %>">
+                                        <%= page.title %>
+                                    </a>
+                                </li>
+                                <% } %>
+                                    <% } %>
+                                        <% }) %>
+
+            </ul>
+
+        </div>
+    </nav>
+
+    <main role="main" class="container">
+        <%- messages("messages", locals) %>
+
+            <% if (errors) { %>
+                <% errors.forEach(function(error){ %>
+                    <div class="alert alert-danger">
+                        <%= error.msg %>
+                    </div>
+                    <% }) %>
+                        <% } %>

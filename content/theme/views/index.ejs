@@ -1,0 +1,28 @@
+<% include _layouts/header %>
+<div class="hero">
+    <% media.forEach(function(media){ %>
+        <% if(media.category == "about-img"){ %>
+            <img src="/images/<%= media.path %>" alt="<%= media.alt %>">
+        <% } %>
+    <% }) %>
+</div>
+<div class="welcome-text">
+ <%- content %>
+</div>
+<div class="home-bulletin">
+        <% media.forEach(function(media){ %>
+            <% if(media.category == "bulletin-image"){ %>
+                <img src="/images/<%= media.path %>" alt="<%= media.alt %>">
+                <div class="home-bulletin-info">
+                    <h4>Live Music /Poetry Readings are on Wednesday & Saturday evenings from 5:30pm until closing.</h4>
+                    <h4>Book club is held on Wednesday evenings; the book of the month is: <%= media.description %></h4>
+                </div>
+            <% } %>
+        <% }) %>
+</div>
+   <div class="featured-products">
+        <h4>Featured Products</h4>
+        <div class="home-product-holder"></div>
+   </div>
+
+        <% include _layouts/footer %>

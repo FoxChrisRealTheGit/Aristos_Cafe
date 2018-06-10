@@ -1,0 +1,201 @@
+/*
+colors
+
+cream       #fffdd0
+tan         #D2B48C
+brown       #8B4513
+
+coral       #ff7f50
+aqua        #00FFFF
+periwinkle  #CCCCFF
+*/
+/* main css */
+main{
+    background: #fffdd0
+}
+
+
+/* header css */
+.main-header{
+    display: flex;
+    flex-direction: column;
+    height: 150px;
+    background: #8B4513
+}
+.nav-link{
+    padding: 5px;
+    margin: 5px 10px;
+    color:  #eee;
+    font-weight: 600;
+    transition: all .3s linear;
+}
+.navbar-brand{
+    margin: 0 auto;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+}
+.main-header-top{
+    display: flex;
+}
+.main-header-top-nav{
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+    font-style: italic;
+   font-size: 14px;
+}
+.main-header-bottom{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 75px;
+}
+.main-header-bottom-nav{
+    display: flex;
+}
+
+.nav-link:hover{
+    transition: all .3s linear;
+    color:  #CCCCFF;
+}
+/* footer css */
+.footer{
+    text-align: center;
+    width: 100%;
+    padding-top: 40px;
+    background: #8B4513;
+    color: #eee;
+    height: 200px;
+}
+.footer p{
+    
+}
+.aristos-footer{
+    margin: 10px;
+    font-style: italic;
+}
+.footer-hours{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #D2B48C;
+    height: 150px;
+}
+
+.hour-holder{
+    margin: 5px 10px;  
+     text-align: center;
+     border: 5px solid #8B4513;
+     padding: 20px;
+     background: #fffdd0;
+     cursor: default;
+     transition: all .3s linear;
+}
+.hour-holder:hover{
+   box-shadow: 0 0 7px #8B4513;
+   transition: all .3s linear;
+}
+.hour-holder h4{
+    font-size: 20px;
+    color:#8B4513;
+    font-weight: 600;
+}
+.hour-holder h5{
+    font-size: 18px;
+    color: #8B4513;
+    font-weight: 600;
+}
+
+/* basic stuff */
+.page-title{
+    text-align: center;
+    color: #8B4513;
+    font-size: 24px;
+    font-weight: 900;
+    padding: 20px;
+}
+
+/* form stuffs */
+.cafe-form{
+    border: 5px solid #8B4513;
+    width: 300px;
+margin: 20px auto;
+padding: 40px;
+}
+.form-group label{
+    font-size: 20px;
+    color: #8B4513;
+    font-weight: 600;
+}
+.form-group input{
+    font-size: 16px;
+    color: #8B4513;
+    font-weight: 600;
+    margin: 10px 0  10px 0;
+}
+.cafe-form button{
+  width: 100px;
+  height: 30px;
+   border: 2px solid #8B4513;
+   background: #fffdd0;
+   font-weight: 900;
+   color: #8B4513;
+}
+
+.cafe-form button:hover{
+     border: 2px solid #D2B48C;
+     background: #8B4513;
+     font-weight: 900;
+     color: #fffdd0;
+     cursor: pointer;
+  }
+
+  /* home page */
+  .hero{
+      display: flex;
+      height: 350px;
+  }
+.welcome-text{
+    width: 100%;
+    background: #D2B48C;
+    padding: 20px;
+    text-align: center;
+    font-size: 20px;
+}
+  .home-bulletin{
+      display: flex;
+      margin: 0 auto;
+      padding: 40px;
+      width: 900px;
+  }
+
+  .home-bulletin-info{
+      padding: 30px;
+      width: 400px;
+      color: #8B4513;
+  }
+  .home-bulletin-info h4{
+    font-size: 30px;
+    margin: 40px 0 40px 0;
+    font-weight: 600;
+  }
+
+  .featured-products{
+    text-align: center;
+    height: 300px;
+  }
+  .featured-products h4{
+   font-size: 30px;
+font-weight: 600;
+padding: 10px;
+color: #fffdd0;
+border-top: 2px solid #8B4513;
+border-bottom: 2px solid #8B4513;
+background: #D2B48C;
+  }
+  .home-product-holder{
+      width: 1000px;
+      height: 100%;
+      margin: 0 auto;
+  }
