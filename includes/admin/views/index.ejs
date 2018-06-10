@@ -1,0 +1,74 @@
+<% include ./_layouts/adminheader %>
+    <div class="admin-background-full"></div>
+    <h2 class="admin-page-title">Dashboard</h2>
+    <% if(contactManagementExists) { %>
+        <div class="dashbaord-section">
+                <% if (message.length !== 0){ %>
+                    <div class="dashboard-notepad">
+                    <% message.forEach(function(message){ %>
+
+                        <a href="" class="note-box"><div>
+                            <h3>
+                                <%= message.name %>
+                            </h3>
+                            <p>
+                                <%= message.content %>
+                        </div></a>
+
+                        <% }) %>
+            </div>
+            <% } else { %>
+                <div class="dashboard-notepad">
+                    <h3 class="none-of-something">There are no messages...</h3>
+                </div>
+                <% } %>
+            <a class="dashboard-redirect" href="/admin/contact">See all messages</a>
+        </div>
+        <% } %>
+            <% if(projectManagementExists) { %>
+                <div class="dashbaord-section">
+                    <div class="dashboard-notepad">
+                        <h3 class="none-of-something">There are no notes...</h3>
+                    </div>
+                    <a class="dashboard-redirect" href="#">See all Notes</a>
+                </div>
+                <div class="dashbaord-section">
+                    <% if (tasks.length !== 0){ %>
+                        <div class="dashboard-notepad">
+                        <% tasks.forEach(function(task){ %>
+
+                            <a href="/admin/project-management/edit-task/<%= task._id %>" class="note-box"><div>
+                                <h3>
+                                    <%= task.title %>
+                                </h3>
+                                <p>
+                                        <%= task.content %>
+                            </div></a>
+
+                            <% }) %>
+                </div>
+                <% } else { %>
+                    <div class="dashboard-notepad">
+                        <h3 class="none-of-something">There are no tasks...</h3>
+                    </div>
+                    <% } %>
+                        <a class="dashboard-redirect" href="/admin/project-management#active-tasks">See all tasks</a>
+                        </div>
+                        <% } %>
+                            <% if(true){ %>
+                                <div class="dashbaord-section">
+                                    <div class="dashboard-notepad">
+                                        <h3 class="none-of-something">There is no data...</h3>
+                                    </div>
+                                    <a class="dashboard-redirect" href="#">See more graphs</a>
+                                </div>
+                                <% } %>
+
+                                    <div class="dashboard-divider"></div>
+                                    <div class="dashboard-log">
+                                        <div class="dashboard-notepad">
+                                            <h3 class="none-of-something">There is nothing in the log...</h3>
+                                        </div>
+                                        <a class="dashboard-redirect" href="#">See the full log</a>
+                                    </div>
+                                    <% include ./_layouts/adminfooter %>

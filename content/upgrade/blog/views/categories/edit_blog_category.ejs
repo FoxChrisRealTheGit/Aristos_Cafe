@@ -1,0 +1,40 @@
+<%- include("../../../../../includes/admin/views/_layouts/adminheader") %>
+    <div class="admin-background-full"></div>
+    <h2 class="admin-page-title">Edit a Blog Category</h2>
+    <button class="btn btn-primary">
+        <a class="btn-text" href="/admin/blog-categories">Back to Blog Categories</a>
+    </button>
+    <br>
+    <br>
+
+    <form method="post" action="/admin/blog-categories/edit-blog-category/<%= id %>">
+        <div class="form-options-bottom-group">
+            <div class="form-options">
+                <div class="form-group">
+                    <label for="">Title</label>
+                    <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Title">
+
+                </div>
+                <div class="form-group">
+                    <label for="">Author</label>
+                    <input type="text" class="form-control" name="author" value="<%= author %>" placeholder="Author">
+
+                </div>
+            </div>
+            <div class="second-form-options">
+                <div class="form-group">
+                    <label for="">Meta Description</label>
+                    <textarea class="disabled-resize" rows="4" name="description" placeholder="Place a brief description of this product category. Max of 320 characters including spaces."
+                        maxlength="320"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="">Meta Keywords</label>
+                    <textarea class="disabled-resize" rows="4" name="keywords" placeholder="Place your keywords seperated by a comma. Max of 300 characters. EX. neat product, neater category, neatest person"
+                        maxlength="300"></textarea>
+                </div>
+
+            </div>
+        </div>
+        <button class="btn-submit btn-text">Submit</button>
+    </form>
+    <%- include("../../../../../includes/admin/views/_layouts/adminfooter") %>

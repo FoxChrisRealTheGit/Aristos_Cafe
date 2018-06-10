@@ -1,0 +1,60 @@
+<% include ../_layouts/adminheader %>
+<div class="admin-background-full"></div>
+<h2 class="admin-page-title">Add a Video</h2>
+<button class="btn btn-primary">
+    <a class="btn-text" href="/admin/add-media">Back to Add Media</a>
+</button>
+
+<br>
+    <br>
+
+    <form method="post" action="/admin/add-media/upload-video">
+        <div class="form-options">
+        <div class="form-group">
+            <label for="">Title</label>
+            <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Title">
+
+        </div>
+
+        <div class="form-group">
+            <label for="">Alt</label>
+            <input type="text" class="form-control" name="alt" value="<%= alt %>" placeholder="Alt Tag">
+
+        </div>
+
+        <div class="form-group">
+            <label for="">Category</label>
+            <select name="category" class="form-control">
+                <% categories.forEach(function(category){ %>
+                    <option value="<%= category.title %>">
+                        <%= category.title %>
+                    </option>
+                    <% }); %>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="">Image</label>
+            <input type="file" class="form-control" name="image" id="img">
+            <img src="#" id="imgPreview" alt="">
+
+        </div>
+        </div>
+        <button class="btn-submit btn-text">Submit</button>
+    </form>
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                let reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $("#imgPreview").attr("src", e.target.result).width(100).height(100);
+                }
+                reader.readAsDataURL(input.files[0])
+            }
+        }
+
+        $("#img").change(function () {
+            readURL(this);
+        })
+    </script>
+<% include ../_layouts/adminfooter %>

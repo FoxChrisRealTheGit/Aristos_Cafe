@@ -1,0 +1,47 @@
+<% include ../_layouts/adminheader %>
+<div class="admin-background-full"></div>
+    <h2 class="admin-page-title">Add a User</h2>
+        <button class="btn btn-primary">
+            <a class="btn-text" href="/admin/user-controls">Back to Users</a>
+        </button>
+        <form method="post" action="/admin/user-controls/add-admin">
+            <div class="form-options">
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" name="name" class="form-control" placeholder="Name">
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="text" name="email" class="form-control" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" name="username" class="form-control" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <label for="">Admin</label>
+                <select name="admin" class="form-control">
+                    <option value="">
+
+                    </option>
+                    <option value="no">
+                        No
+                    </option>
+                    <option value="yes" selected>
+                        Yes
+                    </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" class="form-control" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <label>Confirm Password</label>
+                <input type="password" name="password2" class="form-control" placeholder="Confirm Password">
+            </div>
+</div>
+            <button type="submit" class="btn-submit btn-text">Submit</button>
+        </form>
+
+        <% include ../_layouts/adminfooter %>

@@ -1,0 +1,49 @@
+<%- include("../../../../../includes/admin/views/_layouts/adminheader") %>
+    <div class="admin-background-full"></div>
+    <h2 class="admin-page-title">Product Categories</h2>
+    <div>
+
+        <button class="btn btn-primary">
+            <a class="btn-text" href="/admin/products/add-product">Add a new product</a>
+        </button>
+        <button class="btn btn-primary">
+            <a class="btn-text" href="/admin/product-categories/add-product-category">Add a new category</a>
+        </button>
+    </div>
+    <br>
+    <br>
+    <% if (count > 0) { %>
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% categories.forEach(function(cat) { %>
+                    <tr>
+                        <td>
+                            <%= cat.title %>
+                        </td>
+                        <td  class="edit-table-stuffs">
+                            <a href="/admin/product-categories/edit-product-category/<%= cat._id %>">Edit</a>
+                        </td>
+                        <% if (cat.title == "General") { %>
+                            <td>
+
+                            </td>
+                            <% } else { %>
+                                <td class="delete-table-stuffs">
+                                    <a class="confirmDeletion" href="/admin/product-categories/delete-product-category/<%= cat._id %>">Delete</a>
+                                </td>
+                                <% } %>
+                    </tr>
+                    <% }); %>
+            </tbody>
+        </table>
+        <% } else { %>
+            <h3 class="none-of-something">There are no product categories, you should make one...</h3>
+            <% } %>
+                <%- include("../../../../../includes/admin/views/_layouts/adminfooter") %>

@@ -1,0 +1,12 @@
+<% include ../_layouts/adminheader %>
+<div class="admin-background-full"></div>
+    <h2 class="admin-page-title">Settings</h2>
+    <%- content %>
+        <form method="post" action="/admin/settings" enctype="multipart/form-data">
+            <div class="form-options">
+                </div>
+
+            <button class="btn-submit btn-text">Save</button>
+            <a class="btn-danger btn-text" href="/admin/settings/cancel">Cancel</a>
+        </form>
+        <% include ../_layouts/adminfooter %>

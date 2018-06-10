@@ -1,0 +1,64 @@
+<%- include("../_layouts/adminheader") %>
+    <div class="admin-background-full"></div>
+    <h2 class="admin-page-title">Add a page</h2>
+    <div>
+        <button class="btn btn-primary">
+            <a class="btn-text" href="/admin/pages">Back to pages</a>
+            <button class="btn btn-primary">
+                <a class="btn-text" href="/admin/pages/add-dynamic-builder">Dynamic Builder</a>
+            </button>
+        </button>
+    </div>
+    <br>
+    <br>
+
+    <form method="post" action="/admin/pages/add-page">
+        <%- include("../../../AristosTextEditor/AristosTextEditor") %>
+            <div class="form-options-bottom-group">
+                <div class="form-options">
+                    <div class="form-group">
+                        <label for="">Title</label>
+                        <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Title">
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Slug</label>
+                        <input type="text" class="form-control" name="slug" value="<%= slug %>" placeholder="Slug">
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Parent</label>
+                        <select name="parent" class="form-control">
+                            <% pages.forEach(function(page){ %>
+                                <option value="<%= page.slug %>">
+                                    <%= page.title %>
+                                </option>
+                                <% }); %>
+                        </select>
+                        <div class="form-group">
+                                <label for="">Author</label>
+                                <input type="text" class="form-control" name="author" value="<%= author %>" placeholder="Author">
+        
+                            </div>
+                    </div>
+                </div>
+                <div class="second-form-options">
+                    <div class="form-group">
+                        <label for="">Meta Description</label>
+                        <textarea class="disabled-resize" rows="4" name="description"  placeholder="Place a brief description of this page. Max of 320 characters including spaces." maxlength="320"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Meta Keywords</label>
+                        <textarea  class="disabled-resize" rows="4" name="keywords"  placeholder="Place your keywords seperated by a comma. Max of 300 characters. EX. neat site, neater page, neatest person" maxlength="300"></textarea>
+                    </div>
+
+                </div>
+            </div>
+            <div>
+                <button class="btn-submit btn-text">Submit</button>
+            </div>
+    </form>
+
+    <%- include("../_layouts/adminfooter") %>

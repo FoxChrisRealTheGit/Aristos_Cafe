@@ -1,0 +1,87 @@
+<%- include("../../../../includes/admin/views/_layouts/adminheader") %>
+    <div class="admin-background-full"></div>
+    <h2 class="admin-page-title">Products</h2>
+    <div class="button-row">
+        <button class="btn">
+            <a class="btn-text" href="/admin/products/add-product">Add a new product</a>
+        </button>
+        <button class="btn">
+            <a class="btn-text" href="/admin/product-categories/add-product-category">Add a new category</a>
+        </button>
+    </div>
+    <br>
+    <br>
+    <% if (count > 0) { %>
+        <div class="button-row">
+
+            <button class="btn">
+                <a class="btn-text" href="/admin/products/">All Categories</a>
+            </button>
+       
+        <% categories.forEach(function(category){ %>
+            
+                <button  class="btn">
+                    <a class="btn-text" href="/admin/products/categories/<%= category.slug %>">
+                        <%= category.title %>
+                    </a>
+                </button>
+           
+            <% }) %> 
+        </div>
+                <table class="admin-table">
+                    <thead>
+                        <tr class="home">
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Category</th>
+                            <th>Product Image</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% products.forEach(function(product) { %>
+                            <tr id="id_<%= product._id %>" class="<%= product.slug %>">
+                                <td>
+                                    <%= product.title %>
+                                </td>
+                                <td>
+                                    <%= parseFloat(product.price).toFixed(2) %>
+                                </td>
+                                <td>
+                                    <%= product.category %>
+                                </td>
+                                <td>
+                                    <% if (product.image == "") { %>
+                                        <img class="table-image-preview" id="noimage" src="/images/noimage.png" alt="">
+                                        <% } else { %>
+                                            <img class="table-image-preview" id="noimage" src="/images/product_images/<%= product.id%>/<%= product.image %>" alt="">
+                                            <% } %>
+                                </td>
+                                <td class="edit-table-stuffs">
+                                    <a href="/admin/products/edit-product/<%= product._id %>">Edit</a>
+                                </td>
+                                <td class="delete-table-stuffs">
+                                    <a class="confirmDeletion" href="/admin/products/delete-product/<%= product._id %>">Delete</a>
+                                </td>
+                            </tr>
+                            <% }); %>
+                    </tbody>
+                </table>
+                <% } else { %>
+                    <h3 class="none-of-something">There are no products...</h3>
+                    <% } %>
+                        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+                        <script>
+                            $('tbody').sortable({
+                                items: "tr",
+                                placeholder: "ui-state-hightlight",
+                                update: function () {
+                                    let ids = $("tbody").sortable("serialize");
+                                    let url = "/admin/products/reorder-products";
+
+                                    $.post(url, ids);
+                                }
+                            });
+                        </script>
+                        <%- include("../../../../includes/admin/views/_layouts/adminfooter") %>

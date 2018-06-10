@@ -1,0 +1,84 @@
+<div id="options-container">
+    <div class="options-bar">
+        <div class="options-box">ROW</div>
+        <div class="options-box">COLUMN</div>
+        <div class="options-box">TEXT</div>
+        <div class="options-box">IMAGE</div>
+    </div>
+    <div id="page-preview" class="page-preview">
+        <%- content %>
+    </div>
+</div>
+<div class="optionsBackground">
+</div>
+<div class="options-popup-menu">
+    <h6>Options Menu</h6>
+    <p id="options-background-query">Background:</p>
+</div>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+    crossorigin="anonymous"></script>
+<script> 
+    $('#page-preview').on("DOMSubtreeModified", function () {
+        $("#contentPlacement").html($("#page-preview").html())
+    });
+    //declare draggable items
+    $(".options-box").draggable({
+        containment: "#options-container",
+        helper: "clone",
+        revert: true
+    });
+    //droppable event listener
+    $("#page-preview").droppable({
+        accept: ".options-box",
+        greedy: true,
+        drop: function (event, ui) {
+            if ($(ui.draggable[0]).html() == "ROW") {
+                $(ui.draggable).clone().addClass("dynamic-row").removeClass("options-box").appendTo($(this)).html("").resizable({
+                    containment: $(this),
+                    maxHeight: $(this).height(),
+                    grid: 20
+                }).selectable({
+                    stop: function () {
+                        console.log($(this).css("background-color"))
+                        $("#options-background-query").html("<p>Background: " + $(this).css('background-color') + "</p>")
+                        $(".optionsBackground").addClass("showMe")
+                        $(".options-popup-menu").addClass("showMe")
+                    }
+
+                }).droppable({
+                    greedy: true,
+                    drop: function (event, ui) {
+                        if ($(ui.draggable[0]).html() == "COLUMN") {
+                            $(ui.draggable).clone().addClass("dynamic-div").removeClass("options-box").appendTo($(this)).html("").draggable({
+                                containment: $(this),
+                                snap: true
+                            }).resizable({
+                                containment: $(this),
+                                minHeight: $(this).height() - 5
+                            }).droppable({
+
+                            })
+                        }
+                    }
+                })
+            }
+        }
+    }).resizable({
+        maxWidth: $(this).width() - 30,
+        minWidth: $(this).width() - 29
+    }).selectable({
+        stop: function () {
+            console.log($(this).css("background-color"))
+            $("#options-background-query").html("<p>Background: " + $(this).css('background-color') + "</p>")
+            $(".optionsBackground").addClass("showMe")
+            $(".options-popup-menu").addClass("showMe")
+        }
+    })
+
+    $(".optionsBackground").click(function (e) {
+        $(".optionsBackground").removeClass("showMe")
+        $(".options-popup-menu").removeClass("showMe")
+    })
+
+</script>

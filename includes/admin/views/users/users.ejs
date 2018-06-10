@@ -1,0 +1,54 @@
+<% include ../_layouts/adminheader %>
+<div class="admin-background-full"></div>
+    <h2 class="admin-page-title">Admin Users</h2>
+    <div>
+    <button class="btn btn-primary">
+        <a class="btn-text" href="/admin/user-controls/add-admin">Add a new member</a>
+    </button>
+    <button class="btn btn-primary">
+        <a class="btn-text" href="/admin/user-controls/add-admin">Add Existing User</a>
+    </button>
+</div>
+    <table class="admin-table">
+        <thead>
+            <tr class="home">
+                <th>Name</th>
+                <th>Role</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <% user.forEach(function(user){ %>
+                <tr>
+                    <td value="<%= user.name %>">
+                        <%= user.name %>
+                    </td>
+                    <td>
+
+                    </td>
+                    <% if(user.admin == 1) { %>
+                        <td  class="edit-table-stuffs">
+                            <a href="/admin/user-controls/edit-admin/<%= user._id %>">Edit</a>
+                        </td>
+                        <% } else { %>
+                            <td>
+
+                            </td>
+                            <% } %>
+                                <% if(user.admin == 1 && user.name !== "Admin") { %>
+                                    <td  class="delete-table-stuffs">
+                                        <a href="/admin/user-controls/remove-admin/<%= user._id %>">Remove</a>
+                                    </td>
+                                    <% } else { %>
+                                        <td>
+
+                                        </td>
+                                        <% } %>
+                </tr>
+                <% }); %>
+        </tbody>
+
+    </table>
+    <% include ../_layouts/adminfooter %>

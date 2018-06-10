@@ -1,0 +1,48 @@
+<%- include("../_layouts/adminDynamicHeader") %>
+<div class="admin-background-full"></div>
+    <h2 class="admin-page-title">Add - Dynamic Page Builder</h2>
+    <div>
+        <button class="btn btn-primary">
+            <a class="btn-text" href="/admin/pages">Back to pages</a>
+            <button class="btn btn-primary">
+                <a class="btn-text" href="/admin/pages/add-page">Basic Editor</a>
+            </button>
+        </button>
+    </div>
+
+    <%- include("../../../AristosPageEditor/AristosPageEditor") %>
+
+        <form method="post" action="/admin/pages/add-page">
+
+            <div class="form-group">
+                <label for="">Title</label>
+                <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Title">
+
+            </div>
+
+            <div class="form-group">
+                <label for="">Slug</label>
+                <input type="text" class="form-control" name="slug" value="<%= slug %>" placeholder="Slug">
+
+            </div>
+
+            <div class="form-group">
+                <label for="">Parent</label>
+                <select name="parent" class="form-control">
+                    <% pages.forEach(function(page){ %>
+                        <option value="<%= page.slug %>">
+                            <%= page.title %>
+                        </option>
+                        <% }); %>
+                </select>
+            </div>
+            </div>
+            <textarea id="contentPlacement" class="hidden" name="content">
+                </textarea>
+
+            <div>
+                <button class="btn-submit btn-text">Submit</button>
+            </div>
+        </form>
+
+        <%- include("../_layouts/adminDynamicFooter") %>

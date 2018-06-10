@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Admin - Aristos Node CMS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/reset.css">
+    <link rel="stylesheet" type="text/css" href="/admincss.css">
+    <link rel="stylesheet" type="text/css" href="/AristosTextEditor.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <nav class="admin-header">
+        <a class="admin-brand" href="/" target="_blank">Aristos CMS</a>
+
+        <div class="" id="navbarsExampleDefault">
+            <ul class="admin-options">
+                <li class="admin-nav-item">
+                    <a class="admin-link" href="/admin">Dashboard</a>
+                </li>
+                <li class="admin-nav-item">
+                    <a class="admin-link" href="/admin/add-media">Add Media</a>
+                </li>
+                <li class="admin-nav-item">
+                    <a class="admin-link" href="/admin/pages">Pages</a>
+                </li>
+                <% if(portfolioManagementExists) { %>
+                    <li class="admin-nav-item">
+                        <a class="admin-link" href="/admin/portfolio">Portfolio</a>
+                    </li>
+                    <% } %>
+                        <% if(productsExists) { %>
+                            <li class="admin-nav-item">
+                                <a class="admin-link" href="/admin/products">Products</a>
+                            </li>
+                            <% } %>
+                                <% if(blogsExists){ %>
+                                    <li class="admin-nav-item">
+                                        <a class="admin-link" href="/admin/blogs">Blogs</a>
+                                    </li>
+                                    <% } %>
+                                        <% if(contactManagementExists){ %>
+                                            <li class="admin-nav-item">
+                                                <a class="admin-link" href="/admin/contact">Contact</a>
+                                            </li>
+                                            <% } %>
+            </ul>
+            <ul class="admin-projects">
+                <% if(projectManagementExists) { %>
+                    <li class="admin-nav-item">
+                        <a class="admin-link" href="/admin/project-management">Project Management</a>
+                    </li>
+                    <% } %>
+            </ul>
+            <ul class="config-admin-nav">
+                <li class="admin-nav-item">
+                    <a class="admin-link" href="/admin/user-controls">Users</a>
+                </li>
+                <li class="admin-nav-item">
+                    <a class="admin-link" href="/admin/settings">Settings</a>
+                </li>
+            </ul>
+            <ul class="admin-nav-logout">
+                <li class="admin-nav-item-logout">
+                    <a class="admin-link" href="/users/logout">Logout</a>
+                </li>
+            </ul>
+            <p class="admin-footer">&COPY Aristos CMS - 0.0.1</p>
+            <p class="admin-footer">Node Version</p>
+            <p class="admin-footer">
+                <a href="http://foxdesignagency.com/" target="_blank">Fox Design Agency</a>
+            </p>
+        </div>
+    </nav>
+
+    <main role="main" class="container">
+        <%- messages("messages", locals) %>
+
+            <% if (errors) {%>
+                <% errors.forEach(function(error){ %>
+                    <div class="alert alert-danger">
+                        <%= error.msg %>
+                    </div>
+                    <% }); %>
+                        <% } %>

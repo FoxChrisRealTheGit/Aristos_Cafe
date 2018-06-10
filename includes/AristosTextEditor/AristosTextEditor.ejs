@@ -1,0 +1,195 @@
+<div class="form-group">
+    <label for="">Content</label>
+    <div class="toolbar">
+        <div class="firstrow">
+            <a href="#" data-command='undo'>
+                <i class='fa fa-undo'></i>
+            </a>
+            <a href="#" data-command='redo'>
+                <i class='fa fa-repeat'></i>
+            </a>
+            <div class="fore-wrapper">
+                <i class='fa fa-font' style='color:#C96;'></i>
+                <div class="fore-palette">
+                </div>
+            </div>
+            <div class="back-wrapper">
+                <i class='fa fa-font' style='background:#C96;'></i>
+                <div class="back-palette">
+                </div>
+            </div>
+            <a href="#" data-command='bold'>
+                <i class='fa fa-bold'></i>
+            </a>
+            <a href="#" data-command='italic'>
+                <i class='fa fa-italic'></i>
+            </a>
+            <a href="#" data-command='underline'>
+                <i class='fa fa-underline'></i>
+            </a>
+            <a href="#" data-command='strikeThrough'>
+                <i class='fa fa-strikethrough'></i>
+            </a>
+            <a href="#" data-command='justifyLeft'>
+                <i class='fa fa-align-left'></i>
+            </a>
+            <a href="#" data-command='justifyCenter'>
+                <i class='fa fa-align-center'></i>
+            </a>
+            <a href="#" data-command='justifyRight'>
+                <i class='fa fa-align-right'></i>
+            </a>
+            <a href="#" data-command='justifyFull'>
+                <i class='fa fa-align-justify'></i>
+            </a>
+            <a href="#" data-command='indent'>
+                <i class='fa fa-indent'></i>
+            </a>
+            <a href="#" data-command='outdent'>
+                <i class='fa fa-outdent'></i>
+            </a>
+            <a href="#" data-command='insertUnorderedList'>
+                <i class='fa fa-list-ul'></i>
+            </a>
+            <a href="#" data-command='insertOrderedList'>
+                <i class='fa fa-list-ol'></i>
+            </a>
+        </div>
+        <div class="secondrow">
+            <a href="#" data-command='cut'>
+                <i class='fa fa-cut'></i>
+            </a>
+            <a href="#" data-command='copy'>
+                <i class='fa fa-copy'></i>
+            </a>
+            <a href="#" data-command='paste'>
+                <i class='fa fa-paste'></i>
+            </a>
+            <a href="#" data-command='subscript'>
+                <i class='fa fa-subscript'></i>
+            </a>
+            <a href="#" data-command='superscript'>
+                <i class='fa fa-superscript'></i>
+            </a>
+            <a href="#" data-command='HR'>
+                <i class='fa fa-arrows-h'></i>
+            </a>
+            <a href="#" data-command='removeFormat'>
+                <i class='fa fa-trash'></i>
+            </a>
+            <a href="#" data-command='createlink'>
+                <i class='fa fa-link'></i>
+            </a>
+            <a href="#" data-command='unlink'>
+                <i class='fa fa-unlink'></i>
+            </a>
+            <a href="#" data-command='insertimage'>
+                <i class='fa fa-image'></i>
+            </a>
+            <!-- <a href="#" data-command='increaseFontSize'>
+                    <i class='fa fa-caret-up'></i>
+                </a>
+                <a href="#" data-command='decreaseFontSize'>
+                        <i class='fa fa-caret-down'></i>
+                    </a> -->
+            <div class="editorStyleSelector">
+                <a href="#" class="dropbtn">Style</a>
+                <div id="myDropdown" class="dropdown-content">
+
+                    <a href="#" data-command='H1'>H1</a>
+
+                    <a href="#" data-command='H2'>H2</a>
+
+                    <a href="#" data-command='H3'>H3</a>
+
+                    <a href="#" data-command='H4'>H4</a>
+
+                    <a href="#" data-command='H5'>H5</a>
+
+                    <a href="#" data-command='H6'>H6</a>
+
+                    <a href="#" data-command='P'>P</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id='editor' contenteditable>
+        <%- content %>
+    </div>
+    <div class="bottomEditorBorder"></div>
+</div>
+<textarea id="contentAreaStuffs" class="hidden" name="content">
+    <%- content %>
+    </textarea>
+<div class="image-selector-background">
+
+</div>
+    <div class="image-selector">
+        <% media.forEach(function(media){ %>
+            <div>
+                <a href="#" data-command="add-this-image">
+                    <img class="add-media-preview-image" src="/images/<%= media.path %>" alt="<%= media.alt %>"></img>
+                </a>
+            </div>
+            <% }) %>
+    </div>
+
+<script> 
+    $('#editor').on("DOMSubtreeModified", function () {
+        $("#contentAreaStuffs").html($("#editor").html())
+    });
+
+    let colorPalette = ['000000', 'FF9966', '6699FF', '99FF66', 'CC0000', '00CC00', '0000CC', '333333', '0066FF', 'FFFFFF'];
+    let forePalette = $('.fore-palette');
+    let backPalette = $('.back-palette');
+
+    for (var i = 0; i < colorPalette.length; i++) {
+        forePalette.append('<a href="#" data-command="forecolor" data-value="' + '#' + colorPalette[i] + '" style="background-color:' + '#' + colorPalette[i] + ';" class="palette-item"></a>');
+        backPalette.append('<a href="#" data-command="backcolor" data-value="' + '#' + colorPalette[i] + '" style="background-color:' + '#' + colorPalette[i] + ';" class="palette-item"></a>');
+    }
+
+    $('.toolbar a').click(function (e) {
+        let command = $(this).data('command');
+        if (command === 'H1' || command == 'H2' || command == 'P' || command == 'H3' || command == 'H4' || command == 'H5' || command == 'H6' || command == 'HR') {
+            $("#myDropdown").removeClass("show")
+
+            document.execCommand('formatBlock', false, command);
+        }
+        if (command == 'forecolor' || command == 'backcolor') {
+            document.execCommand($(this).data('command'), false, $(this).data('value'));
+        }
+        if (command == 'createlink') {
+            url = prompt('Enter the link here: ', 'http:\/\/');
+            document.execCommand($(this).data('command'), false, url);
+        }
+        if (command == 'insertimage') {
+            $(".image-selector").addClass("image-selector-show")
+            $(".image-selector-background").addClass("image-selector-show")
+        }
+        else {
+            document.execCommand($(this).data('command'), false, null)
+        }
+    });
+    $('.image-selector a').click(function (e) {
+        let command = $(this).data('command');
+        $(".image-selector").removeClass("image-selector-show")
+        $(".image-selector-background").removeClass("image-selector-show")
+        let img = $(this).html()
+        document.execCommand('insertHTML', false, img);
+    });
+    $(".image-selector-background").click(function (e) {
+        $(".image-selector").removeClass("image-selector-show")
+        $(".image-selector-background").removeClass("image-selector-show")
+    })
+    /* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+    $(".dropbtn").click(function () {
+        if ($("#myDropdown").hasClass("show")) {
+            $("#myDropdown").removeClass("show")
+        } else {
+            $("#myDropdown").addClass("show")
+        }
+    })
+
+</script>

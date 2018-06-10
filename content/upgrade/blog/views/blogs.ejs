@@ -1,0 +1,54 @@
+<%- include("../../../../includes/admin/views/_layouts/adminheader") %>
+<div class="admin-background-full"></div>
+    <h2 class="admin-page-title">Blogs</h2>
+    <div class="button-row">
+        <button class="btn btn-primary">
+            <a class="btn-text" href="/admin/blogs/add-blog">Add a new blog</a>
+        </button>
+        <button class="btn btn-primary">
+            <a class="btn-text" href="/admin/blog-categories/add-blog-category">Add a new category</a>
+        </button>
+    </div>
+    <br>
+    <br>
+    <% if (count > 0) { %>
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>title</th>
+                    <th>category</th>
+                    <th>published</th>
+                    <th>comments</th>
+                    <th>edit</th>
+                    <th>delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% blogs.forEach(function(blog) { %>
+                    <tr>
+                        <td>
+                            <%= blog.title %>
+                        </td>
+                        <td>
+                            <%= blog.category %>
+                        </td>
+                        <td>
+                            <%= blog.published %>
+                        </td>
+                        <td class="edit-table-stuffs">
+                            <a href="/admin/blog-comments/<%= blog.id %>">See Comments</a>
+                        </td>
+                        <td  class="edit-table-stuffs">
+                            <a href="/admin/blogs/edit-blog/<%= blog._id %>">Edit</a>
+                        </td>
+                        <td  class="delete-table-stuffs">
+                            <a class="confirmDeletion" href="/admin/blogs/delete-blog/<%= blog._id %>">Delete</a>
+                        </td>
+                    </tr>
+                    <% }); %>
+            </tbody>
+        </table>
+        <% } else { %>
+            <h3 class="none-of-something">There are no blogs, you should write one.</h3>
+            <% } %>
+                <%- include("../../../../includes/admin/views/_layouts/adminfooter") %>

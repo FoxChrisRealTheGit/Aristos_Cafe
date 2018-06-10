@@ -1,0 +1,85 @@
+<% include ../../../../includes/admin/views/_layouts/adminheader %>
+    <div class="admin-background-full"></div>
+    <h2 class="admin-page-title">Project Management</h2>
+    <div>
+        <button class="btn btn-primary">
+            <a class="btn-text" href="/admin/project-management/add-task">Add a New Task</a>
+        </button>
+        <button class="btn btn-primary">
+            <a class="btn-text" href="/admin/project-management/add-task">Make a New Note</a>
+        </button>
+    </div>
+    <div class="dashbaord-section">
+        <div class="dashboard-notepad">
+            <h3 class="none-of-something">There are no notes...</h3>
+        </div>
+        <a class="dashboard-redirect" href="#">See all Notes</a>
+    </div>
+    <h6 class="admin-subheading" id="active-tasks">Active Tasks</h6>
+    <table class="admin-table">
+        <thead>
+            <tr class="home">
+                <th>task name</th>
+                <th>assigned</th>
+                <th>edit</th>
+                <th>complete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% tasks.forEach(function(task) { %>
+                <% if(task.completed != 1) { %>
+                    <tr id="id_<%= task._id %>">
+                        <td>
+                            <%= task.title %>
+                        </td>
+                        <td>
+                            <%= task.assigned %>
+                        </td>
+                        <td class="edit-table-stuffs">
+                            <a href="/admin/project-management/edit-task/<%= task._id %>">Edit</a>
+                        </td>
+                        <td class="complete-table-stuffs">
+                            <a href="/admin/project-management/complete-task/<%= task._id %>">Complete</a>
+                        </td>
+                    </tr>
+                    <% } %>
+                        <% }) %>
+        </tbody>
+        </tr>
+    </table>
+    <br>
+    <br>
+    <h6 class="admin-subheading">Completed Tasks</h6>
+    <table class="admin-table">
+        <thead>
+            <tr class="home">
+                <th>task name</th>
+                <th>comments</th>
+                <th>completed by</th>
+                <th>date completed</th>
+                <th>archive</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% tasks.forEach(function(task) { %>
+                <% if (task.completed == 1){ %>
+                    <tr>
+                        <td>
+                            <%= task.title %>
+                        </td>
+                        <td>
+                            <%- task.content %>
+                        </td>
+                        <td>Completed By</td>
+                        <td>Date Completed</td>
+                        <td class="complete-table-stuffs">
+                            <a href="/admin/project-management/archive-task/<%= task._id %>">Archive</a>
+                        </td>
+                    </tr>
+                    <% } %>
+                        </tr>
+                        <% }) %>
+        </tbody>
+
+    </table>
+    <% include ../../../../includes/admin/views/_layouts/adminfooter %>
