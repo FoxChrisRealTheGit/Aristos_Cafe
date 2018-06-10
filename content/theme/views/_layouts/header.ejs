@@ -60,11 +60,22 @@
                                 </a>
                             </li>
                             <% } else{ %>
+                                <div class="dropdown">
                                 <li>
-                                    <a class="nav-link" href="/<%= page.slug %>">
+                                    <a class="nav-link" id="<%= page.slug %>" href="/<%= page.slug %>">
                                         <%= page.title %>
                                     </a>
                                 </li>
+                                    <div class="hovered-item" id="<%= page.slug %>child">
+                                    <% pages.forEach(function(pagers){ %>
+                                        <% if(pagers.parent == page.slug){ %>
+                                            <a class="nav-link" href="/<%= page.slug %>/<%= pagers.slug %>">
+                                                <%= pagers.title %>
+                                            </a>
+                                            <% } %>
+                                            <% }) %>
+                                    </div>
+                                </div>
                                 <% } %>
                                     <% } %>
                                         <% }) %>

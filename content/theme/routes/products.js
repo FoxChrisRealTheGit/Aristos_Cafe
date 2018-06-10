@@ -36,20 +36,37 @@ router.get("/:category", function (req, res) {
 
 
     Category.findOne({ slug: categorySlug }, function (err, c) {
-        Product.find({ category: categorySlug }).sort({ sorting: 1 }).exec(function (err, products) {
-            if (err) {
-                console.log(err);
-            }
-            res.render("product/cat_products", {
-                title: c.title,
-                slug: c.slug,
-                products: products,
-                description: c.description,
-                author: c.author,
-                keywords: c.keywords
+        if (c) {
+            Product.find({ category: categorySlug }).sort({ sorting: 1 }).exec(function (err, products) {
+                if (err) {
+                    console.log(err);
+                }
+                res.render("product/cat_products", {
+                    title: c.title,
+                    slug: c.slug,
+                    products: products,
+                    description: c.description,
+                    author: c.author,
+                    keywords: c.keywords
+                })
+
+            })
+        } else {
+            Product.find({}).sort({ sorting: 1 }).exec(function (err, products) {
+                if (err) {
+                    console.log(err);
+                }
+                res.render("product/all_products", {
+                    title: "All products",
+                    products: products,
+                    description: "",
+                    author: "",
+                    keywords: ""
+                })
+
             })
 
-        })
+        }
     })
 })
 

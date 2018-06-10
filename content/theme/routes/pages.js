@@ -9,10 +9,31 @@ const Media = require("../../../includes/models/media")
 const Product = require("../../upgrade/products/models/product")
 
 /*
+* GET mission statement
+*/
+
+router.get("/about/mission-statement", function (req, res) {
+    Page.findOne({ slug: "about" }, function (err, page) {
+        if (err) { Logger.error(err) };
+
+        if (!page) {
+            res.redirect("/")
+        } else {
+            res.render("about_us", {
+                title: page.title,
+                content: page.content,
+                keywords: page.keywords,
+                description: page.description,
+                author: page.author
+            })
+        }
+    })
+})
+/*
 * GET about page
 */
 
-router.get("/why-are-we-awesome", function (req, res) {
+router.get("/how-we-roast", function (req, res) {
     Page.findOne({ slug: "about" }, function (err, page) {
         if (err) { Logger.error(err) };
 
