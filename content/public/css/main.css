@@ -82,6 +82,9 @@ main{
 .dropdown:hover .hovered-item {
    visibility: visible;
 }
+.side-dropdown{
+    margin: 5px;
+}
 .side-hovered-item {
     visibility: hidden;
     position: absolute;
