@@ -18,7 +18,11 @@
 <body>
     <nav class="main-header">
         <div class="main-header-top">
-            <a class="navbar-brand" href="/">Aristos CMS</a>
+            <% media.forEach(function(media){ %>
+                <% if(media.category == "site-logo"){ %>
+            <a class="navbar-brand" href="/"><img src="/images/<%= media.path %>" alt="<%= media.alt %>"></a>
+            <% } %>
+            <% }) %>
             <ul class="main-header-top-nav">
                     <li>
                             <a class="nav-link" href="/cart/checkout">My Cart (

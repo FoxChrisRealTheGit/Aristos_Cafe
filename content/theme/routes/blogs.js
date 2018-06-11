@@ -7,7 +7,8 @@ const Category = require("../../upgrade/blog/models/blogCategory")
 const Page = require("../../../includes/models/page")
 //GET blogs model
 const Blog = require("../../upgrade/blog/models/blog")
-
+// GET media model
+const Media = require("../../../includes/models/media")
 
 /*
 * GET blog index
@@ -15,6 +16,7 @@ const Blog = require("../../upgrade/blog/models/blog")
 
 router.get("/", function (req, res) {
     let slug = req.params.slug;
+    Media.find({}, function (err, media) {
         Page.find({}, function (err, page) {
             Blog.find({}, function (err, blogs) {
                 if (err) {
@@ -29,13 +31,14 @@ router.get("/", function (req, res) {
                         keywords: page.keywords,
                         description: page.description,
                         author: page.author,
-                        blogs: blogs
+                        blogs: blogs,
+                        media: media
                     })
                 }
             })
         })
     })
-    
+})
 
 
 
@@ -44,6 +47,7 @@ router.get("/", function (req, res) {
 */
 router.get("/:category/:slug", function (req, res) {
     let slug = req.params.slug;
+    Media.find({}, function (err, media) {
     Blog.findOne({ slug: slug }, function (err, blog) {
         if (err) {
             console.log(err);
@@ -56,10 +60,12 @@ router.get("/:category/:slug", function (req, res) {
                 content: blog.content,
                 keywords: blog.keywords,
                 description: blog.description,
-                author: blog.author
+                author: blog.author,
+                media: media
             })
         }
     })
+})
 })
 
 /*
@@ -69,7 +75,7 @@ router.get("/:category/:slug", function (req, res) {
 router.get("/:category", function (req, res) {
 
     let categorySlug = req.params.category;
-
+    Media.find({}, function (err, media) {
     Category.findOne({ slug: categorySlug }, function (err, c) {
         Blog.find({ category: categorySlug }, function (err, blogs) {
             if (err) {
@@ -81,11 +87,13 @@ router.get("/:category", function (req, res) {
                 author: c.author,
                 keywords: c.keywords,
                 blogs: blogs,
-                categorySlug: categorySlug
+                categorySlug: categorySlug,
+                media: media
             })
 
         })
     })
+})
 })
 
 

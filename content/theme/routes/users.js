@@ -5,17 +5,21 @@ const bcrypt = require("bcryptjs")
 
 // GET User model
 const User = require("../../../includes/models/user")
+// GET media model
+const Media = require("../../../includes/models/media")
 /*
 * GET register
 */
 
 router.get("/register", function (req, res) {
-
-    res.render("user/register", {
-        title: "Register",
-        author: "",
-        description: "",
-        keywords: ""
+    Media.find({}, function (err, media) {
+        res.render("user/register", {
+            title: "Register",
+            author: "",
+            description: "",
+            keywords: "",
+            media: media
+        })
     })
 })
 
@@ -89,17 +93,19 @@ router.post("/register", function (req, res) {
 */
 
 router.get("/login", function (req, res) {
-
-    if (res.locals.user) {
-        res.redirect("/")
-    } else {
-        res.render("user/login", {
-            title: "Log in",
-            author: "",
-            description: "",
-            keywords: ""
-        })
-    }
+    Media.find({}, function (err, media) {
+        if (res.locals.user) {
+            res.redirect("/")
+        } else {
+            res.render("user/login", {
+                title: "Log in",
+                author: "",
+                description: "",
+                keywords: "",
+                media: media
+            })
+        }
+    })
 })
 
 /*

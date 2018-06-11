@@ -13,20 +13,23 @@ const Product = require("../../upgrade/products/models/product")
 */
 
 router.get("/about/mission-statement", function (req, res) {
-    Page.findOne({ slug: "about" }, function (err, page) {
-        if (err) { Logger.error(err) };
+    Media.find({}, function (err, media) {
+        Page.findOne({ slug: "about" }, function (err, page) {
+            if (err) { Logger.error(err) };
 
-        if (!page) {
-            res.redirect("/")
-        } else {
-            res.render("about_us", {
-                title: page.title,
-                content: page.content,
-                keywords: page.keywords,
-                description: page.description,
-                author: page.author
-            })
-        }
+            if (!page) {
+                res.redirect("/")
+            } else {
+                res.render("about_us", {
+                    title: page.title,
+                    content: page.content,
+                    keywords: page.keywords,
+                    description: page.description,
+                    author: page.author,
+                    media: media
+                })
+            }
+        })
     })
 })
 /*
@@ -34,20 +37,23 @@ router.get("/about/mission-statement", function (req, res) {
 */
 
 router.get("/how-we-roast", function (req, res) {
-    Page.findOne({ slug: "about" }, function (err, page) {
-        if (err) { Logger.error(err) };
+    Media.find({}, function (err, media) {
+        Page.findOne({ slug: "about" }, function (err, page) {
+            if (err) { Logger.error(err) };
 
-        if (!page) {
-            res.redirect("/")
-        } else {
-            res.render("about_us", {
-                title: page.title,
-                content: page.content,
-                keywords: page.keywords,
-                description: page.description,
-                author: page.author
-            })
-        }
+            if (!page) {
+                res.redirect("/")
+            } else {
+                res.render("about_us", {
+                    title: page.title,
+                    content: page.content,
+                    keywords: page.keywords,
+                    description: page.description,
+                    author: page.author,
+                    media: media
+                })
+            }
+        })
     })
 })
 
@@ -56,20 +62,23 @@ router.get("/how-we-roast", function (req, res) {
 */
 
 router.get("/drink-menu", function (req, res) {
-    Page.findOne({ slug: "drink-menu" }, function (err, page) {
-        if (err) { Logger.error(err) };
+    Media.find({}, function (err, media) {
+        Page.findOne({ slug: "drink-menu" }, function (err, page) {
+            if (err) { Logger.error(err) };
 
-        if (!page) {
-            res.redirect("/")
-        } else {
-            res.render("about_us", {
-                title: page.title,
-                content: page.content,
-                keywords: page.keywords,
-                description: page.description,
-                author: page.author
-            })
-        }
+            if (!page) {
+                res.redirect("/")
+            } else {
+                res.render("about_us", {
+                    title: page.title,
+                    content: page.content,
+                    keywords: page.keywords,
+                    description: page.description,
+                    author: page.author,
+                    media: media
+                })
+            }
+        })
     })
 })
 /*
@@ -77,20 +86,23 @@ router.get("/drink-menu", function (req, res) {
 */
 
 router.get("/food-menu", function (req, res) {
-    Page.findOne({ slug: "food-menu" }, function (err, page) {
-        if (err) { Logger.error(err) };
+    Media.find({}, function (err, media) {
+        Page.findOne({ slug: "food-menu" }, function (err, page) {
+            if (err) { Logger.error(err) };
 
-        if (!page) {
-            res.redirect("/")
-        } else {
-            res.render("about_us", {
-                title: page.title,
-                content: page.content,
-                keywords: page.keywords,
-                description: page.description,
-                author: page.author
-            })
-        }
+            if (!page) {
+                res.redirect("/")
+            } else {
+                res.render("about_us", {
+                    title: page.title,
+                    content: page.content,
+                    keywords: page.keywords,
+                    description: page.description,
+                    author: page.author,
+                    media: media
+                })
+            }
+        })
     })
 })
 /*
@@ -98,42 +110,47 @@ router.get("/food-menu", function (req, res) {
 */
 
 router.get("/about", function (req, res) {
-    Page.findOne({ slug: "about" }, function (err, page) {
-        if (err) { Logger.error(err) };
+    Media.find({}, function (err, media) {
+        Page.findOne({ slug: "about" }, function (err, page) {
+            if (err) { Logger.error(err) };
 
-        if (!page) {
-            res.redirect("/")
-        } else {
-            res.render("about_us", {
-                title: page.title,
-                content: page.content,
-                keywords: page.keywords,
-                description: page.description,
-                author: page.author
-            })
-        }
+            if (!page) {
+                res.redirect("/")
+            } else {
+                res.render("about_us", {
+                    title: page.title,
+                    content: page.content,
+                    keywords: page.keywords,
+                    description: page.description,
+                    author: page.author,
+                    media: media
+                })
+            }
+        })
     })
 })
-
 
 /*
 * GET contact page
 */
 router.get("/contact", function (req, res) {
-    Page.findOne({ slug: "contact" }, function (err, page) {
-        if (err) { Logger.error(err) };
+    Media.find({}, function (err, media) {
+        Page.findOne({ slug: "contact" }, function (err, page) {
+            if (err) { Logger.error(err) };
 
-        if (!page) {
-            res.redirect("/")
-        } else {
-            res.render("contact", {
-                title: page.title,
-                content: page.content,
-                keywords: page.keywords,
-                description: page.description,
-                author: page.author
-            })
-        }
+            if (!page) {
+                res.redirect("/")
+            } else {
+                res.render("contact", {
+                    title: page.title,
+                    content: page.content,
+                    keywords: page.keywords,
+                    description: page.description,
+                    author: page.author,
+                    media: media
+                })
+            }
+        })
     })
 })
 
@@ -190,22 +207,25 @@ router.get("/", function (req, res) {
 
 router.get("/:slug", function (req, res) {
     let slug = req.params.slug;
-    Page.findOne({ slug: slug }, function (err, page) {
-        if (err) {
-            console.log(err);
-        }
+    Media.find({}, function (err, media) {
+        Page.findOne({ slug: slug }, function (err, page) {
+            if (err) {
+                console.log(err);
+            }
 
-        if (!page) {
-            res.redirect("/")
-        } else {
-            res.render("index", {
-                title: page.title,
-                content: page.content,
-                keywords: page.keywords,
-                description: page.description,
-                author: page.author
-            })
-        }
+            if (!page) {
+                res.redirect("/")
+            } else {
+                res.render("index", {
+                    title: page.title,
+                    content: page.content,
+                    keywords: page.keywords,
+                    description: page.description,
+                    author: page.author,
+                    media: media
+                })
+            }
+        })
     })
 })
 

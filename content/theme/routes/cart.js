@@ -20,7 +20,6 @@ const Order = require("../../upgrade/products/models/orders")
 */
 router.get("/add/:product", function (req, res) {
     let slug = req.params.product
-
     Product.findOne({ slug: slug }, function (err, p) {
         if (err) {
             console.log(err);
@@ -146,15 +145,18 @@ router.get("/checkout", function (req, res) {
         }
         let shipping = req.session.shipping !== undefined ? req.session.shipping : 0;
         total += +shipping;
-        res.render("cart/checkout", {
-            title: "checkout",
-            shipping: parseFloat(shipping).toFixed(2),
-            total: parseFloat(total).toFixed(2),
-            cart: req.session.cart,
-            description: "",
-            author: "",
-            keywords: "",
-            orderid: orderid
+        Media.find({}, function (err, media) {
+            res.render("cart/checkout", {
+                title: "checkout",
+                shipping: parseFloat(shipping).toFixed(2),
+                total: parseFloat(total).toFixed(2),
+                cart: req.session.cart,
+                description: "",
+                author: "",
+                keywords: "",
+                orderid: orderid,
+                media: media
+            })
         })
     }
 

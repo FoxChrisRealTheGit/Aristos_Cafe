@@ -39,6 +39,9 @@ main{
     align-items: center;
     justify-content: center;
 }
+.navbar-brand img{
+    width: 200px;
+}
 .main-header-top{
     display: flex;
 }
@@ -53,7 +56,7 @@ main{
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    height: 75px;
+    height: 10px;
 }
 .main-header-bottom-nav{
     display: flex;
