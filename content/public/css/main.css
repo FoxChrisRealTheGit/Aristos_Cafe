@@ -178,6 +178,11 @@ padding: 40px;
     font-weight: 600;
     margin: 10px 0  10px 0;
 }
+.cafe-form textarea{
+   resize: none;
+   overflow-y: scroll;
+   width: 210px;
+ }
 .cafe-form button{
   width: 100px;
   height: 30px;
@@ -288,12 +293,14 @@ background: #D2B48C;
     padding: 5px;
     color: #8B4513;
     font-weight: 600;
+    transition: all .4s linear;
 }
 .product-display a:hover{
     border: 2px solid #D2B48C;
      background: #8B4513;
      color: #fffdd0;
      cursor: pointer;
+     transition: all .4s linear;
   }
 
   /* cart styles */
