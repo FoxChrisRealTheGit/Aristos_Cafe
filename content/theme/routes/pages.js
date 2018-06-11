@@ -14,7 +14,7 @@ const Product = require("../../upgrade/products/models/product")
 
 router.get("/about/mission-statement", function (req, res) {
     Media.find({}, function (err, media) {
-        Page.findOne({ slug: "about" }, function (err, page) {
+        Page.findOne({ slug: "mission-statement" }, function (err, page) {
             if (err) { Logger.error(err) };
 
             if (!page) {
@@ -38,13 +38,13 @@ router.get("/about/mission-statement", function (req, res) {
 
 router.get("/how-we-roast", function (req, res) {
     Media.find({}, function (err, media) {
-        Page.findOne({ slug: "about" }, function (err, page) {
+        Page.findOne({ slug: "how-we-roast" }, function (err, page) {
             if (err) { Logger.error(err) };
 
             if (!page) {
                 res.redirect("/")
             } else {
-                res.render("about_us", {
+                res.render("how_we_roast", {
                     title: page.title,
                     content: page.content,
                     keywords: page.keywords,
@@ -69,7 +69,7 @@ router.get("/drink-menu", function (req, res) {
             if (!page) {
                 res.redirect("/")
             } else {
-                res.render("about_us", {
+                res.render("drink_menu", {
                     title: page.title,
                     content: page.content,
                     keywords: page.keywords,
@@ -93,7 +93,7 @@ router.get("/food-menu", function (req, res) {
             if (!page) {
                 res.redirect("/")
             } else {
-                res.render("about_us", {
+                res.render("food_menu", {
                     title: page.title,
                     content: page.content,
                     keywords: page.keywords,

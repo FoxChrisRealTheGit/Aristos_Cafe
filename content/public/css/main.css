@@ -29,7 +29,7 @@ main{
 .nav-link{
     padding: 5px;
     margin: 5px 10px;
-    color:  #eee;
+    color:  #fffdd0;
     font-weight: 600;
     transition: all .3s linear;
 }
