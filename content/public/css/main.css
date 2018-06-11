@@ -82,6 +82,24 @@ main{
 .dropdown:hover .hovered-item {
    visibility: visible;
 }
+.side-hovered-item {
+    visibility: hidden;
+    position: absolute;
+    right: -150px;
+    top: 0;
+    background-color: #8B4513;
+    padding: 0 5px 5px 5px;
+    min-width: 160px;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+}
+.side-hovered-item a{
+    transition: none;
+}
+.side-dropdown:hover .side-hovered-item {
+   visibility: visible;
+}
 /* footer css */
 .footer{
     text-align: center;
@@ -194,6 +212,12 @@ padding: 40px;
     border-top: 2px solid #8B4513;
 border-bottom: 2px solid #8B4513;
 }
+.welcome-text p {
+    width: 900px;
+    margin: 0 auto;
+    color: #8B4513;
+    font-size: 20px;
+ }
   .home-bulletin{
       display: flex;
       margin: 0 auto;
@@ -234,6 +258,7 @@ background: #D2B48C;
   }
 
   .product-display{
+      margin: 0 20px 0 10px;
       padding: 20px;
       width: 200px;
       display: flex;
@@ -242,6 +267,7 @@ background: #D2B48C;
   }
   .product-display img{
     width: 200px;
+    height: 150px;
     margin: 5px;
 }
 .product-display h5{
@@ -368,4 +394,10 @@ background: #D2B48C;
 .checkout-bottom-buttons div{
     display: flex;
     margin: 10px 0 10px 0;
+}
+
+.page-stuff{
+    width: 700px;
+    margin: 0 auto;
+    color: #8B4513;
 }

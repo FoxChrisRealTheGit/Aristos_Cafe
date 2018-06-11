@@ -58,11 +58,7 @@
                 <% pages.forEach(function(page){ %>
                     <% if(page.parent == "home"){ %>
                         <% if (page.slug == "home"){ %>
-                            <li>
-                                <a class="nav-link" href="/">
-                                    <%= page.title %>
-                                </a>
-                            </li>
+                           
                             <% } else{ %>
                                 <div class="dropdown">
                                 <li>
@@ -73,9 +69,20 @@
                                     <div class="hovered-item" id="<%= page.slug %>child">
                                     <% pages.forEach(function(pagers){ %>
                                         <% if(pagers.parent == page.slug){ %>
+                                            <div class="side-dropdown">
                                             <a class="nav-link" href="/<%= page.slug %>/<%= pagers.slug %>">
                                                 <%= pagers.title %>
                                             </a>
+                                            <div class="side-hovered-item" id="<%= page.slug %>child">
+                                            <% pages.forEach(function(pagees){ %>
+                                                <% if(pagees.parent == pagers.slug){ %>
+                                                    <a class="nav-link" href="/<%= page.slug %>/<%= pagees.slug %>">
+                                                        <%= pagees.title %>
+                                                    </a>
+                                                    <% } %>
+                                                    <% }) %>
+                                            </div>
+                                        </div>
                                             <% } %>
                                             <% }) %>
                                     </div>

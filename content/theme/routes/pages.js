@@ -7,7 +7,30 @@ const Page = require("../../../includes/models/page")
 const Media = require("../../../includes/models/media")
 // GET Product model
 const Product = require("../../upgrade/products/models/product")
+/*
+* GET mission statement
+*/
 
+router.get("/directions", function (req, res) {
+    Media.find({}, function (err, media) {
+        Page.findOne({ slug: "directions" }, function (err, page) {
+            if (err) { Logger.error(err) };
+
+            if (!page) {
+                res.redirect("/")
+            } else {
+                res.render("about_us", {
+                    title: page.title,
+                    content: page.content,
+                    keywords: page.keywords,
+                    description: page.description,
+                    author: page.author,
+                    media: media
+                })
+            }
+        })
+    })
+})
 /*
 * GET mission statement
 */
@@ -185,7 +208,7 @@ router.get("/", function (req, res) {
         }
         Media.find({}, function (err, media) {
             if (err) { Logger.error(err) };
-            Product.find({ category: "coffees" }).limit(4).exec(function (err, product) {
+            Product.find({ category: "coffees" }).limit(2).exec(function (err, product) {
                 if (err) { Logger.error(err) };
                 res.render("index", {
                     title: pages.title,
